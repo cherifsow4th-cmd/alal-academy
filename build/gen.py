@@ -577,7 +577,9 @@ def build_article(a, others):
     out = out.replace('href="parcours.html"', 'href="../parcours.html"')
     out = out.replace('href="webinaires.html"', 'href="../webinaires.html"')
     out = out.replace('href="panier.html"', 'href="../panier.html"')
-    out = out.replace('src="assets/logo/', 'src="../assets/logo/')
+    # every asset, not just the logo: the page loader carries two <img> of
+    # the mark, and they were left pointing at the site root
+    out = out.replace('src="assets/', 'src="../assets/')
     out = out.replace("url('assets/", "url('../assets/")
     out = out.replace('href="../../index.html', 'href="../index.html')
     out = out.replace('src="../../assets/logo/', 'src="../assets/logo/')
