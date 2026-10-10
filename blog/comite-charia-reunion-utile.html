@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comité Charia : comment tenir une réunion qui sert vraiment à quelque chose — Alal Academy</title>
+<meta name="description" content="Trois ans de comités, des centaines d&#x27;heures de réunions, et un constat : 70 % du temps est gaspillé sur des sujets qu&#x27;on aurait dû régler avant. Manuel de terrain.">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#FFFFFF;color:#1F1F1F;font-family:'General Sans','Magnetik',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    -webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1920px;margin:0 auto;padding:0 52px}
+  .kicker{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:#7a7a7a}
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);
+    backdrop-filter:blur(14px);border-bottom:1px solid rgba(31,31,31,.07)}
+  .nav{max-width:1920px;margin:0 auto;padding:18px 52px;display:flex;
+    align-items:center;justify-content:space-between;gap:32px}
+  .nav{align-items:stretch}
+  .nav>a:first-child,.nav-actions{align-self:center}
+  .nav-links{display:flex;align-items:stretch;gap:30px;font-size:14.5px;color:#7a7a7a}
+  /* "Active Indicator Grow", ported from the Alal Finance header
+     (alal-finance-site/index.html, .nav-toplevel::before / .nav-link-plain::before):
+     a 4.4px bar flush with the header's bottom edge, rounded on its top two
+     corners only, edge to edge with the text. Rest scaleY(0) anchored at the
+     bottom, hover or current page scaleY(1), 0.6s on the site's own --ease-btn
+     cubic-bezier(.22,1,.36,1). Finance sets it on hover and on the open group;
+     here the second trigger is the page you are on. */
+  .nav-links a{position:relative;display:flex;align-items:center;white-space:nowrap;
+    color:#7a7a7a;transition:color .35s cubic-bezier(.22,1,.36,1)}
+  .nav-links a:hover,.nav-links a.is-active{color:#1F1F1F}
+  /* -19px, not 0: the bar has to clear .nav's 18px bottom padding plus the
+     header's 1px rule to sit flush on the header edge, the way Finance's does
+     (its nav items are full-height, ours are not). */
+  .nav-links a:before{content:'';position:absolute;left:0;right:0;bottom:-19px;height:4.4px;
+    background:#1F1F1F;border-radius:4px 4px 0 0;transform:scaleY(0);transform-origin:50% 100%;
+    transition:transform .6s cubic-bezier(.22,1,.36,1)}
+  .nav-links a:hover:before,.nav-links a.is-active:before{transform:scaleY(1)}
+  .nav-actions{display:flex;align-items:center;gap:10px;flex:none}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-size:14.5px;font-weight:500;
+    padding:10px 18px;border-radius:10px;transition:box-shadow .3s ease,transform .45s cubic-bezier(.2,.8,.2,1)}
+  .btn-dark{background:#1F1F1F;color:#FFFFFF}
+  .btn-dark .btn-short{display:none}
+  .btn-dark:hover{box-shadow:0 2px 6px rgba(0,0,0,.32),0 7px 16px rgba(0,0,0,.28),
+    0 17px 33px rgba(0,0,0,.24),0 34px 60px rgba(0,0,0,.16)}
+  .btn-ink{height:40px;padding:0 16px;border:1px solid rgba(31,31,31,.14);background:#FFFFFF;color:#1F1F1F;border-radius:10px;
+    display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:500}
+  .btn-ink:hover{box-shadow:0 2px 5px rgba(0,0,0,.10),0 6px 14px rgba(0,0,0,.09),0 16px 30px rgba(0,0,0,.08)}
+  .btn-icon{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;flex:none;
+    border:1px solid rgba(31,31,31,.14);border-radius:10px;background:#FFFFFF;color:#1F1F1F}
+  .btn-icon:hover{box-shadow:0 2px 5px rgba(0,0,0,.10),0 6px 14px rgba(0,0,0,.09)}
+  .nav-sep{width:1px;height:26px;background:rgba(31,31,31,.14);flex:none;margin:0 4px}
+  .nav-actions svg{display:block;flex:none}
+  footer a:hover{color:#1F1F1F}
+  /* The footer's padding and gap are inline, so they survive the page's own
+     mobile rules and used to push the document to ~500px wide at 390px. The
+     !important overrides are the only way to reach an inline style, and
+     min-width:0 stops a long link like "Parcours certifiants" setting the
+     column floor. */
+  @media (max-width:743px){
+    .aa-footer-grid{grid-template-columns:1fr 1fr !important;gap:34px 22px !important}
+    .aa-footer-grid>*{min-width:0}
+    footer{padding-left:24px !important;padding-right:24px !important}
+  }
+  /* ── Phone navigation ──────────────────────────────────────────────────
+     Below 744px the links and controls move into a slide-in panel behind a
+     hamburger — the same pattern as the homepage. */
+  .burger{display:none;width:40px;height:40px;flex:none;padding:0;cursor:pointer;
+    border:1px solid rgba(31,31,31,.14);border-radius:10px;background:#FFFFFF;
+    flex-direction:column;align-items:center;justify-content:center;gap:5px}
+  .burger span{display:block;width:17px;height:1.6px;background:#1F1F1F;border-radius:2px}
+  .mnav[hidden]{display:none}
+  .mnav{position:fixed;inset:0;z-index:120}
+  .mnav-scrim{position:absolute;inset:0;background:rgba(31,31,31,.42);opacity:0;
+    transition:opacity .32s ease}
+  .mnav.is-open .mnav-scrim{opacity:1}
+  .mnav-panel{position:absolute;top:0;right:0;height:100%;width:min(86vw,360px);
+    background:#FFFFFF;box-shadow:-24px 0 60px rgba(31,31,31,.18);
+    padding:18px 24px 26px;display:flex;flex-direction:column;gap:2px;overflow-y:auto;
+    transform:translateX(100%);transition:transform .36s cubic-bezier(.22,1,.36,1)}
+  .mnav.is-open .mnav-panel{transform:translateX(0)}
+  .mnav-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+  .mnav-head img{height:26px;width:auto;display:block}
+  .mnav-close{width:36px;height:36px;flex:none;padding:0;cursor:pointer;color:#1F1F1F;
+    border:1px solid rgba(31,31,31,.14);border-radius:10px;background:#FFFFFF;
+    display:flex;align-items:center;justify-content:center}
+  .mnav-close svg{width:17px;height:17px}
+  .mnav-panel>a{display:block;padding:14px 0;font-size:20px;font-weight:500;
+    letter-spacing:-.02em;color:#1F1F1F;border-bottom:1px solid rgba(31,31,31,.07)}
+  .mnav-foot{margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:10px}
+  .mnav-cta{display:flex;align-items:center;justify-content:center;gap:9px;padding:15px 20px;
+    border-radius:12px;background:#1F1F1F;color:#FFFFFF;font-size:15px;font-weight:500}
+  .mnav-cta span{font-size:13px}
+  /* the three controls stack, full width, one above the other */
+  .mnav-row{display:grid;grid-template-columns:1fr;gap:10px}
+  .mnav-ghost{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;
+    border-radius:12px;border:1px solid rgba(31,31,31,.14);background:#FFFFFF;color:#1F1F1F;
+    font-size:14px;font-weight:500}
+  body.mnav-open{overflow:hidden}
+  body.mnav-open header{backdrop-filter:none !important}
+  @media (prefers-reduced-motion:reduce){ .mnav-panel,.mnav-scrim{transition:none} }
+  @media (max-width:743px){
+    .burger{display:flex}
+    .nav-actions{display:none !important}
+  }
+  @media (max-width:743px){
+    .wrap,.nav,.foot{padding-left:24px;padding-right:24px}
+    .nav-links{display:none}
+    .btn-ink{width:40px;padding:0;justify-content:center}
+    .btn-ink .nav-label{display:none}
+    .nav-sep{margin:0 2px;height:22px}
+  }
+  /* ── Tablet ───────────────────────────────────────────────────────────
+     744-1199px keeps the desktop chrome — full menu, four-column footer — and
+     fits it by tightening gutters, type and controls rather than collapsing. */
+  @media (min-width:744px) and (max-width:1199px){
+    .wrap,.nav,.foot{padding-left:28px;padding-right:28px}
+    .nav a img{height:25px}
+    .nav-links{gap:17px;font-size:13px}
+    .nav-actions{gap:7px}
+    .btn,.btn-ink{font-size:13px}
+    .btn{padding:8px 13px}
+    .btn-ink{height:34px;width:34px;padding:0;justify-content:center}
+    .btn-ink .nav-label{display:none}
+    .btn-icon{width:34px;height:34px}
+    .btn-dark .btn-long{display:none}
+    .btn-dark .btn-short{display:inline}
+    footer{padding:64px 28px 36px !important}
+    .aa-footer-grid{gap:28px !important}
+    .aa-footer-grid>*{min-width:0}
+  }
+
+  /* Below ~560px the lockup plus three controls no longer fit a 390px row.
+     The lockup is flex:none so it can never be squashed out of proportion
+     again, so the row is made to fit by shrinking it and compacting the
+     sign-up button instead. */
+  @media (max-width:560px){
+    .nav{gap:10px;padding-left:20px;padding-right:20px}
+    .nav a img{height:24px}
+    .nav-actions{gap:7px}
+    .btn-dark{font-size:13px;padding:9px 13px}
+    .btn-dark .btn-arrow,.btn-dark .btn-long{display:none}
+    .btn-dark .btn-short{display:inline}
+  }
+
+  /* the add-to-cart confirmation, on every page that can add */
+  .aa-toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);z-index:140;
+    display:flex;align-items:center;gap:18px;background:#1F1F1F;color:#FFFFFF;border-radius:14px;
+    padding:14px 18px;font-size:14px;box-shadow:0 18px 44px rgba(0,0,0,.28);
+    opacity:0;pointer-events:none;transition:opacity .3s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+  .aa-toast.is-on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+  .aa-toast a{color:#FFFFFF;font-weight:500;text-decoration:underline;text-underline-offset:3px}
+  @media (max-width:743px){
+    .aa-toast{left:16px;right:16px;bottom:16px;transform:translateY(16px);
+      justify-content:space-between}
+    .aa-toast.is-on{transform:translateY(0)}
+  }
+  /* the header cart, with its count */
+  .cart-btn{position:relative}
+  .cart-count{position:absolute;top:-6px;right:-6px;min-width:19px;height:19px;padding:0 5px;
+    border-radius:999px;background:#0E695C;color:#FFFFFF;font-size:11px;font-weight:500;
+    display:flex;align-items:center;justify-content:center;border:2px solid #FFFFFF}
+  .cart-count.is-zero{display:none}
+
+  /* ── Account dialogs ───────────────────────────────────────────────── */
+  /* flex-start + auto margins: the sheet is centred while it fits and
+     scrolls from its own top once it is taller than the window, instead of
+     being clipped at both ends the way align-items:center leaves it */
+  .aa-modal { position:fixed; inset:0; z-index:100; display:none;
+    align-items:flex-start; justify-content:center; padding:24px; overflow:auto; }
+  .aa-modal.is-open { display:flex; }
+  .aa-modal-overlay { position:absolute; inset:0; background:rgba(31,31,31,.58); }
+  /* the sticky header's backdrop-filter makes it paint through an overlay
+     that is correctly above it, so the filter is dropped while open */
+  body.aa-modal-open { overflow:hidden; }
+  body.aa-modal-open header { backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+  .aa-modal-dialog { position:relative; margin:auto; width:min(1040px, 100%); min-width:0; background:#FFFFFF;
+    border-radius:18px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr;
+    box-shadow:0 40px 90px -30px rgba(31,31,31,.45); }
+  .aa-modal-close { position:absolute; top:16px; right:16px; z-index:2; width:38px; height:38px;
+    display:flex; align-items:center; justify-content:center; border-radius:10px;
+    border:1px solid rgba(31,31,31,.14); background:#FFFFFF; color:#1F1F1F; cursor:pointer;
+    font:inherit; transition:background .25s ease, color .25s ease; }
+  .aa-modal-close:hover { background:#1F1F1F; color:#FFFFFF; }
+
+  /* the whole form is set in Poppins — headings, labels, fields, buttons, links */
+  .aa-modal-dialog, .aa-modal-dialog input, .aa-modal-dialog button,
+  .aa-modal-dialog a { font-family:'Poppins','General Sans',-apple-system,BlinkMacSystemFont,sans-serif; }
+
+  .aa-modal-aside { position:relative; isolation:isolate; padding:40px; display:flex;
+    flex-direction:column; justify-content:space-between; gap:28px; min-height:560px;
+    background:#EAEAEA url('../assets/modal/login.jpg') center/cover no-repeat; }
+  /* scrim: the photo runs dark at the sky and light across the concrete, so the
+     type needs its own ground at both ends rather than a flat tint */
+  .aa-modal-aside::before { content:''; position:absolute; inset:0; z-index:-1;
+    background:linear-gradient(to bottom, rgba(31,31,31,.72) 0%, rgba(31,31,31,.18) 32%,
+                                          rgba(31,31,31,.30) 68%, rgba(31,31,31,.82) 100%); }
+  .aa-modal-aside h3 { margin:0; font-size:22px; font-weight:500; letter-spacing:-0.02em; color:#FFFFFF; }
+  .aa-modal-aside p { margin:0; font-size:14px; color:rgba(255,255,255,.78); }
+  .aa-modal-aside a { color:#FFFFFF; font-weight:500; text-decoration:underline; text-underline-offset:3px; }
+
+  .aa-modal-main { min-width:0; padding:50px; display:flex; flex-direction:column; }
+  .aa-modal-main h2 { margin:0; font-size:26px; font-weight:500; letter-spacing:-0.02em; color:#1F1F1F; }
+  .aa-modal-lede { margin:12px 0 0; font-size:14.5px; line-height:1.6; color:#7a7a7a; }
+  .aa-modal-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .aa-field { margin-top:26px; }
+  .aa-field label { display:block; font-size:11px; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; color:#7a7a7a; }
+  .aa-field input { width:100%; height:48px; border:0; border-bottom:1px solid rgba(31,31,31,.14);
+    border-radius:0; background:transparent; font:inherit; font-size:15px; color:#1F1F1F; }
+  .aa-field input::placeholder { color:#A7A7A7; }
+  .aa-field input:focus { outline:none; border-bottom-color:#1F1F1F; }
+  .aa-field .hint { display:block; margin-top:8px; font-size:12.5px; color:#A7A7A7; }
+  .aa-modal-keep { display:flex; align-items:flex-start; gap:10px; margin:24px 0 0; font-size:14px;
+    line-height:1.5; color:#7a7a7a; }
+  .aa-modal-keep input { width:16px; height:16px; flex:none; margin-top:2px; accent-color:#1F1F1F; }
+  .aa-modal-keep a { color:#1F1F1F; text-decoration:underline; text-underline-offset:3px; }
+  .aa-modal-submit { width:100%; height:62px; margin-top:26px; border:0; border-radius:12px;
+    background:#1F1F1F; color:#FFFFFF; font:inherit; font-size:16px; font-weight:500; cursor:pointer; }
+  .aa-modal-forgot { margin:14px 0 0; text-align:right; font-size:13.5px; }
+  .aa-modal-forgot a { color:#7a7a7a; text-decoration:underline; text-underline-offset:3px; }
+  .aa-modal-or { margin:30px 0 14px; font-size:13.5px; color:#7a7a7a; }
+  .aa-modal-social { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .aa-modal-social a { display:flex; align-items:center; justify-content:center; gap:8px; height:48px;
+    border:1px solid rgba(31,31,31,.14); border-radius:10px; font-size:14px; color:#1F1F1F; }
+  /* the aside already carries the line across to the other dialog, so the
+     one at the foot of the form only appears once the aside is gone */
+  .aa-modal-swap { display:none; margin:26px 0 0; padding-top:20px;
+    border-top:1px solid rgba(31,31,31,.09); font-size:14px; color:#7a7a7a; }
+  .aa-modal-swap a { color:#1F1F1F; font-weight:500; text-decoration:underline; text-underline-offset:3px; }
+  @media (max-width:820px) {
+    .aa-modal { padding:14px; }
+    .aa-modal-dialog { grid-template-columns:1fr; }
+    .aa-modal-aside { display:none; }
+    .aa-modal-main { padding:44px 26px 34px; }
+    .aa-modal-row { grid-template-columns:1fr; gap:0; }
+    .aa-modal-social { grid-template-columns:1fr; }
+    .aa-modal-swap { display:block; }
+  }
+
+  /* ── Page loader ──────────────────────────────────────────────────────
+     The mark in Line-soft grey, filling bottom to top in Ink as the page
+     loads, then the whole panel fades out. The PNG is a mask, so one file
+     paints both greys. */
+  html.pl-on{overflow:hidden}
+  #aaLoad{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;
+    justify-content:center;background:#FFFFFF;
+    transition:opacity .72s cubic-bezier(.22,1,.36,1)}
+  #aaLoad.is-out{opacity:0;pointer-events:none}
+  #aaLoad[hidden]{display:none}
+  .pl-mark{display:block;position:relative;width:112px}
+  .pl-mark img{display:block;width:100%;height:auto}
+  .pl-mark .pl-ink{position:absolute;inset:0;height:100%;
+    /* clipped from the top down, so what shows grows up from the foot */
+    clip-path:inset(100% 0 0 0);
+    transition:clip-path .55s cubic-bezier(.22,1,.36,1)}
+  .pl-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+    clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  @media (max-width:640px){ .pl-mark{width:88px} }
+  @media (prefers-reduced-motion:reduce){
+    #aaLoad{transition:opacity .2s linear}
+    .pl-mark .pl-ink{transition:none}
+  }
+
+  .wrap{max-width:1340px}
+  .a-head{padding:78px 0 0;text-align:center}
+  .a-meta{display:flex;align-items:center;justify-content:center;gap:14px;
+    font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#7a7a7a}
+  .a-meta span:not(:last-child):after{content:'';display:inline-block;width:3px;height:3px;
+    border-radius:50%;background:#A7A7A7;margin-left:14px;vertical-align:middle}
+  .a-title{margin:26px auto 0;font-size:clamp(34px,5.2vw,72px);line-height:1.04;
+    letter-spacing:-0.035em;font-weight:300;max-width:18ch}
+  .a-by{margin:26px 0 0;font-size:14px;color:#7a7a7a}
+  .a-hero{margin:56px 0 0;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#EAEAEA}
+  .a-hero img{width:100%;height:100%;object-fit:cover}
+  .a-body{max-width:820px;margin:0 auto;padding:72px 0 0}
+  .a-body p{margin:0 0 30px;font-size:20px;line-height:1.66;color:#1F1F1F;font-weight:300}
+  /* the standfirst and the section headings share one oversized size — the jump
+     from 20px body to 48px heading is what gives the reading layout its rhythm */
+  .a-body .lead{font-size:clamp(30px,3.6vw,48px);line-height:1.2;letter-spacing:-0.03em;
+    font-weight:400;margin-bottom:46px}
+  .a-body h2{margin:76px 0 46px;font-size:clamp(30px,3.6vw,48px);line-height:1.2;
+    letter-spacing:-0.03em;font-weight:400}
+  .a-body figure{margin:0 0 30px}
+  .a-body figure img{width:100%;border-radius:12px;display:block}
+  .a-body figcaption{margin-top:14px;font-size:14px;line-height:1.2;font-weight:300;color:#1F1F1F}
+  .a-body ul{margin:0 0 30px;padding:0;list-style:none}
+  .a-body li{position:relative;padding-left:26px;margin:0 0 15px;font-size:20px;
+    line-height:1.6;font-weight:300}
+  .a-body li:before{content:'';position:absolute;left:4px;top:13px;width:6px;height:6px;
+    border-radius:50%;background:#0E695C}
+  .a-body b{font-weight:500}
+  blockquote{margin:46px 0;padding:0 0 0 28px;border-left:2px solid #0E695C}
+  blockquote p{font-size:26px;line-height:1.4;font-weight:300;margin:0 0 14px}
+  blockquote cite{font-style:normal;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:#7a7a7a}
+  .a-cta{max-width:820px;margin:70px auto 0;padding:38px 40px;border-radius:18px;background:#EAEAEA}
+  .a-cta h3{margin:12px 0 0;font-size:26px;line-height:1.2;letter-spacing:-0.02em;font-weight:400}
+  .a-cta p{margin:12px 0 24px;font-size:16px;line-height:1.6;color:#7a7a7a}
+  .a-more{padding:100px 0 110px}
+  .a-more h2{margin:0 0 34px;font-size:clamp(26px,2.6vw,34px);letter-spacing:-0.025em;font-weight:400}
+  .a-more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+  .a-back{display:inline-flex;align-items:center;gap:9px;margin:64px 0 0;font-size:14.5px;color:#7a7a7a}
+  .a-back:hover{color:#1F1F1F}
+  @media (max-width:900px){
+    .a-head{padding-top:48px}
+    .a-hero{margin-top:34px;border-radius:12px}
+    .a-body{padding-top:44px}
+    .a-body p,.a-body li{font-size:17px}
+    .a-cta{padding:30px 24px}
+    .a-more-grid{grid-template-columns:1fr}
+    .a-more{padding:64px 0 72px}
+  }
+
+  .post{display:block}
+  .post-img{display:block;aspect-ratio:5/3;border-radius:12px;overflow:hidden;background:#EAEAEA}
+  .post-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+  .post:hover .post-img img{transform:scale(1.03)}
+  .post-meta{display:flex;align-items:center;gap:11px;margin-top:18px;font-size:16px;color:#7a7a7a}
+  .post-meta b{font-weight:400;color:#7a7a7a}
+  .post-meta b:after{content:'\2022';margin-left:11px;color:#A7A7A7}
+  .post-meta span{color:#7a7a7a}
+  .post h3{margin:10px 0 0;font-size:20px;line-height:1.38;letter-spacing:-0.01em;font-weight:400}
+</style>
+</head>
+<body>
+<div id="aaLoad" role="status" aria-live="polite">
+  <span class="pl-mark" aria-hidden="true">
+    <img class="pl-grey" src="assets/icons/alal-academy-mark-line.png" alt="" width="550" height="535">
+    <img class="pl-ink" id="aaLoadFill" src="assets/icons/alal-academy-mark-ink.png" alt="" width="550" height="535">
+  </span>
+  <span class="pl-sr">Chargement…</span>
+</div>
+<script>
+/* The fill follows what has actually loaded: the document's own milestones,
+   then every image and stylesheet as it lands. A slow creep keeps the line
+   moving between events so a slow asset never looks like a stall, and a
+   six-second failsafe guarantees the panel always lifts. */
+(function () {
+  var el = document.getElementById('aaLoad'); if (!el) return;
+  var fill = document.getElementById('aaLoadFill');
+  var doc = document.documentElement;
+  doc.classList.add('pl-on');
+
+  var shown = 0, target = 8, done = false, creep;
+
+  function paint() {
+    shown = Math.max(shown, Math.min(target, shown + (target - shown) * 0.5));
+    fill.style.clipPath = 'inset(' + (100 - shown) + '% 0 0 0)';
+  }
+  function to(v) { target = Math.max(target, Math.min(100, v)); paint(); }
+
+  function assets() {
+    var list = [].slice.call(document.images)
+      .concat([].slice.call(document.querySelectorAll('link[rel=stylesheet]')));
+    var total = list.length, got = 0;
+    if (!total) { to(90); return; }
+    list.forEach(function (n) {
+      /* a cross-origin stylesheet (the font CDN) throws on .cssRules, which
+         only tells us it has already arrived */
+      var ok = false;
+      try { ok = n.complete || !!n.sheet; } catch (e) { ok = true; }
+      function tick() { got++; to(45 + got / total * 45); }
+      if (ok) { tick(); return; }
+      n.addEventListener('load', tick, { once: true });
+      n.addEventListener('error', tick, { once: true });
+    });
+  }
+
+  function finish() {
+    if (done) return; done = true;
+    clearInterval(creep);
+    to(100);
+    setTimeout(function () {
+      el.classList.add('is-out');
+      doc.classList.remove('pl-on');
+      window.__aaLoaded = true;
+      document.dispatchEvent(new Event('aa-loaded'));
+      setTimeout(function () { el.hidden = true; }, 820);
+    }, 240);
+  }
+
+  /* between milestones the line keeps inching forward, but never past 92 */
+  creep = setInterval(function () { if (!done) to(Math.min(92, target + 1.4)); }, 220);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('readystatechange', function () {
+      if (document.readyState === 'interactive') to(30);
+    });
+    document.addEventListener('DOMContentLoaded', function () { to(45); assets(); });
+  } else {
+    to(45); assets();
+  }
+  if (document.readyState === 'complete') { to(96); finish(); }
+  else window.addEventListener('load', function () { to(96); finish(); });
+
+  setTimeout(finish, 6000);
+  paint();
+})();
+</script>
+
+<header>
+  <div class="nav">
+    <a href="../index.html" aria-label="Alal Academy — accueil" style="flex:none"><img src="../assets/logo/alal-academy-lockup.png" alt="Alal Academy" width="162" height="30" style="height:30px;width:auto;max-width:none"></a>
+    <nav class="nav-links">
+      <a href="../index.html#catalogue" data-nav="cours">Cours</a>
+      <a href="../index.html#aaoifi" data-nav="aaoifi">AAOIFI</a>
+      <a href="../parcours.html" data-nav="parcours">Parcours</a>
+      <a href="../blog.html" data-nav="blog" class="is-active">Blog</a>
+      <a href="../webinaires.html" data-nav="webinaires">Webinaires</a>
+    </nav>
+    <button type="button" class="burger" id="aaBurger" aria-label="Menu"
+      aria-expanded="false" aria-controls="aaMobileNav"><span></span><span></span></button>
+    <div class="nav-actions">
+      <a href="#login" class="btn-ink">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 11.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4.5 20c0-3.45 3.36-6.25 7.5-6.25s7.5 2.8 7.5 6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg><span class="nav-label">Connexion</span></a>
+      <a href="#signup" class="btn btn-dark"><span class="btn-long">Créer un compte</span><span class="btn-short">S'inscrire</span> <span class="btn-arrow" style="font-size:13px">&rarr;</span></a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a href="../panier.html" class="btn-icon cart-btn" aria-label="Panier">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M2.75 3.25h1.8a1 1 0 0 1 .98.8l.38 1.95m0 0 1.72 8.6a1.6 1.6 0 0 0 1.57 1.28h7.76a1.6 1.6 0 0 0 1.57-1.26l1.47-6.62a1.2 1.2 0 0 0-1.17-1.46H5.91Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9.6 20.75a1.35 1.35 0 1 0 0-2.7 1.35 1.35 0 0 0 0 2.7ZM17.1 20.75a1.35 1.35 0 1 0 0-2.7 1.35 1.35 0 0 0 0 2.7Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg><span class="cart-count is-zero" id="aaCartCount">0</span>
+      </a>
+    </div>
+  </div>
+</header><div class="mnav" id="aaMobileNav" hidden>
+  <div class="mnav-scrim" data-aa-mclose></div>
+  <nav class="mnav-panel" aria-label="Menu principal">
+    <div class="mnav-head">
+      <img src="../assets/logo/alal-academy-lockup.png" alt="Alal Academy" width="162" height="30">
+      <button type="button" class="mnav-close" data-aa-mclose aria-label="Fermer le menu">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"
+          stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <a href="../index.html#catalogue">Cours</a>
+    <a href="../index.html#aaoifi">AAOIFI</a>
+    <a href="../parcours.html">Parcours</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../webinaires.html">Webinaires</a>
+    <div class="mnav-foot">
+      <a href="#signup" class="mnav-cta">Créer un compte <span>&rarr;</span></a>
+      <div class="mnav-row">
+        <a href="#login" class="mnav-ghost">Connexion</a>
+        <a href="../panier.html" class="mnav-ghost">Panier</a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<script>
+  (function () {
+    var burger = document.getElementById('aaBurger');
+    var nav = document.getElementById('aaMobileNav');
+    if (!burger || !nav) return;
+    var panel = nav.querySelector('.mnav-panel');
+    function open() {
+      nav.hidden = false;
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ nav.classList.add('is-open'); }); });
+      document.body.classList.add('mnav-open');
+      burger.setAttribute('aria-expanded','true');
+      var f = panel.querySelector('a, button'); if (f) f.focus();
+    }
+    function close() {
+      nav.classList.remove('is-open');
+      document.body.classList.remove('mnav-open');
+      burger.setAttribute('aria-expanded','false');
+      burger.focus();
+      setTimeout(function(){ if(!nav.classList.contains('is-open')) nav.hidden = true; }, 380);
+    }
+    burger.addEventListener('click', open);
+    nav.addEventListener('click', function(e){
+      if (e.target.closest('[data-aa-mclose]') || e.target.closest('a[href]')) close();
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) close();
+    });
+    panel.addEventListener('keydown', function(e){
+      if (e.key !== 'Tab') return;
+      var it = panel.querySelectorAll('a[href], button'); if (!it.length) return;
+      var first = it[0], last = it[it.length-1];
+      if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+      else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+    });
+    window.matchMedia('(min-width:744px)').addEventListener('change', function(m){
+      if (m.matches && nav.classList.contains('is-open')) close();
+    });
+  })();
+</script>
+<main>
+  <div class="wrap">
+    <article>
+      <div class="a-head">
+        <div class="a-meta"><span>Charia Governance</span><span>24 avril 2026</span><span>6 min de lecture</span></div>
+        <h1 class="a-title">Comité Charia : comment tenir une réunion qui sert vraiment à quelque chose</h1>
+        <p class="a-by">Observatoire Alal Academy</p>
+      </div>
+      <div class="a-hero"><img src="../assets/blog/comite-charia-reunion-utile.png" alt=""></div>
+      <div class="a-body">
+      <p class="lead">Un Comité Charia, c'est trois savants payés pour rendre des avis, et une dizaine de banquiers payés pour les attendre. Quand la réunion est mal préparée, on perd du temps des deux côtés — et le coût marginal d'une heure de comité tourne autour de 800 000 à 1,2 M FCFA tous frais compris.</p>
+      <p>Voici ce que j'ai appris à structurer après avoir vu 47 réunions côté secrétariat. Pas de doctrine, du process.</p>
+      <h2>La règle des 72 heures</h2>
+      <p>Aucun document ne peut arriver au Comité moins de 72 heures avant la réunion. Pas 48. Pas 24. 72 heures minimum, sans exception.</p>
+      <p>C'est la règle qui change tout. Un membre de Comité Charia qui reçoit le dossier la veille au soir va survoler, demander à approfondir, et reporter le sujet au prochain comité. Vous venez de perdre un mois.</p>
+      <p>Quand le dossier arrive 72 heures à l'avance :</p>
+      <ul>
+        <li>Le membre senior lit le contrat type complet, pas le résumé.</li>
+        <li>Les questions techniques tombent par email avant la réunion — vous pouvez préparer les réponses.</li>
+        <li>La séance porte sur les décisions, pas sur la découverte.</li>
+      </ul>
+      <p>Coût d'organisation : un secrétariat Charia structuré (1 ETP cadre, environ 25 M FCFA par an chargé). Gain : vous passez de 2 réunions par mois à 1. À 1,2 M la séance, c'est 14 M FCFA par an récupérés.</p>
+      <h2>L'ordre du jour qui ne déborde pas</h2>
+      <p>Un comité utile traite 3 à 5 dossiers par session. Pas 12. Au-delà de 5, la fatigue cognitive des membres dégrade la qualité — les derniers points reçoivent moins d'attention, et c'est statistiquement là que se cachent les défauts structurels.</p>
+      <ul>
+        <li><b>Décisions reportées du dernier comité</b> — 15 min max, sinon c'est qu'on n'a pas réglé le sujet.</li>
+        <li><b>Nouveaux dossiers</b> — 3 à 4, format identique pour chacun : un brief écrit de 2 pages maximum (contrat type, schéma de flux, points d'attention) et une question explicite. Pas « qu'en pensez-vous », mais « pouvons-nous structurer une Murabaha avec X et Y, oui ou non, sous quelles conditions ».</li>
+        <li><b>Suivi d'audit Charia trimestriel</b> — 15 min : échantillons, écarts, plan d'action.</li>
+        <li><b>Veille normative</b> — 10 min : nouvelles publications AAOIFI, IFSB, CIBAFI, jurisprudence régionale.</li>
+      </ul>
+      <p>Durée cible : 2 h 30. Au-delà de 3 h, la productivité s'effondre.</p>
+      <h2>Le format de fatwa qui ferme les débats</h2>
+      <p>Une fatwa qui dit « structure Charia-compliant sous réserve des observations en annexe » laisse 80 % des questions ouvertes. Les juristes de la banque, six mois plus tard, doivent rappeler le secrétariat pour clarifier.</p>
+      <p>Une fatwa utile dit : oui, non, ou oui sous conditions numérotées. Trois colonnes, pas de littérature. Le format AAOIFI Governance Standard No. 1 (GSIFI-1) :</p>
+      <ul>
+        <li>La question posée, en citation exacte du dossier — pas reformulée.</li>
+        <li>Le référentiel doctrinal mobilisé : Sharia Standards AAOIFI numérotés et écoles de jurisprudence pertinentes.</li>
+        <li>La décision : approuvé, approuvé sous conditions, ou refusé.</li>
+        <li>Les conditions exécutoires, numérotées et datées, avec une échéance pour chacune.</li>
+        <li>Le suivi : qui audite quoi, à quelle échéance.</li>
+      </ul>
+      <p>Quand cette structure devient le template d'avis, le suivi opérationnel s'effondre en complexité. Le responsable conformité Charia prend la liste des conditions et la rentre dans son outil de suivi. Plus de mémoire institutionnelle perdue.</p>
+      <h2>Le contournement à bannir : la « validation tacite »</h2>
+      <p>Quand un dossier est demandé en urgence et qu'on n'a pas le temps de réunir le Comité, deux pratiques dérivent :</p>
+      <ul>
+        <li><b>Validation tacite par silence</b> — « si pas de retour sous 48 h, on considère validé ». C'est interdit par AAOIFI GSIFI-1. Le silence n'a aucune valeur d'avis.</li>
+        <li><b>Validation par un seul membre</b> — « le Dr X est joignable, son aval suffit ». Interdit aussi. Un comité statue collégialement ; l'avis d'un seul membre est consultatif, pas exécutoire.</li>
+      </ul>
+      <p>Le bon contournement : un comité d'urgence formel — 3 membres au minimum, en visio, procès-verbal signé immédiatement. C'est lourd, mais c'est le seul mode rapide qui ne fragilise pas l'institution.</p>
+      <h2>La maturité du dispositif</h2>
+      <p>À l'échelle d'une banque islamique fonctionnelle, le ratio cible est d'1 ETP de secrétariat Charia pour 100 M FCFA de marge brute islamique annuelle. Sous ce ratio, le dispositif est sous-doté et le Comité subit. Au-dessus, on commence à voir apparaître des fonctions Charia spécialisées — audit, formation interne, R&D produit — qui font une vraie différence concurrentielle.</p>
+      <p>L'industrie islamique africaine arrive à la phase où le Comité Charia n'est plus un goulot d'étranglement : il devient un avantage compétitif. Encore faut-il l'opérer comme tel.</p>
+      </div>
+    </article>
+
+    <aside class="a-cta">
+      <span class="kicker">Prêt à approfondir ?</span>
+      <h3>Formez-vous sur ce sujet avec Alal Academy</h3>
+      <p>Des cours pratiques, des cas réels africains, et une certification reconnue AAOIFI &middot; IFSB.</p>
+      <a class="btn btn-dark" href="../cours/gestion-des-risques-compliance.html">Gestion des Risques &amp; Compliance <span style="font-size:13px">&rarr;</span></a>
+    </aside>
+
+    <section class="a-more">
+      <h2>Lire aussi</h2>
+      <div class="a-more-grid">
+        <a class="post" href="ifsb-22-bceao.html">
+          <span class="post-img"><img src="../assets/blog/ifsb-22-bceao.png" alt="" loading="lazy"></span>
+          <span class="post-meta"><b>Charia Governance</b> <span>17 avril 2026</span></span>
+          <h3>IFSB-22 et la BCEAO : ce que la nouvelle norme prudentielle veut vraiment dire pour les banques islamiques UMOA</h3>
+        </a>
+        <a class="post" href="sukuk-souverains-umoa.html">
+          <span class="post-img"><img src="../assets/blog/sukuk-souverains-umoa.png" alt="" loading="lazy"></span>
+          <span class="post-meta"><b>Islamic Capital Markets</b> <span>15 mai 2026</span></span>
+          <h3>Sukuk souverains en UMOA : ce que le succès du Sénégal et de la Côte d&#x27;Ivoire change vraiment</h3>
+        </a>
+        <a class="post" href="fenetre-islamique-ou-full-fledged.html">
+          <span class="post-img"><img src="../assets/blog/fenetre-islamique-ou-full-fledged.png" alt="" loading="lazy"></span>
+          <span class="post-meta"><b>Islamic Banking</b> <span>8 mai 2026</span></span>
+          <h3>Fenêtre islamique ou banque full-fledged : pourquoi le choix structure tout le reste</h3>
+        </a>
+      </div>
+      <a class="a-back" href="../blog.html"><span style="font-size:13px">&larr;</span> Tous les articles</a>
+    </section>
+  </div>
+</main>
+  <footer style="max-width:1920px; margin:0 auto; padding:96px 52px 44px;">
+    <div class="aa-footer-grid" style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:48px;">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <a href="../index.html" style="display:inline-flex; align-items:center; align-self:flex-start;" aria-label="Alal Academy — accueil">
+          <img src="../assets/logo/alal-academy-lockup.png" alt="Alal Academy" width="151" height="28" style="height:28px; width:auto; display:block;">
+        </a>
+        <p style="margin:0; font-size:14.5px; line-height:1.55; color:#7a7a7a; max-width:320px;">La référence de la formation en finance islamique pour l'Afrique francophone et la diaspora.</p>
+        <span style="font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:10.5px; letter-spacing:0.12em; color:#7a7a7a;">AAOIFI · IFSB · CIBAFI</span>
+        <div style="display:flex; gap:16px; font-size:13.5px; color:#7a7a7a;">
+          <a href="../index.html" style="color:#7a7a7a;">LinkedIn</a>
+          <a href="../index.html" style="color:#7a7a7a;">Facebook</a>
+          <a href="../index.html" style="color:#7a7a7a;">Twitter</a>
+          <a href="../index.html" style="color:#7a7a7a;">Instagram</a>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <span style="font-size:13px; font-weight:500;">Plateforme</span>
+        <a href="../index.html#catalogue" style="font-size:14.5px; color:#7a7a7a;">Cours</a>
+        <a href="../parcours.html" style="font-size:14.5px; color:#7a7a7a;">Parcours certifiants</a>
+        <a href="../index.html#aaoifi" style="font-size:14.5px; color:#7a7a7a;">Certifications AAOIFI</a>
+        <a href="../index.html#instructors" style="font-size:14.5px; color:#7a7a7a;">Formateurs</a>
+        <a href="../blog.html" style="font-size:14.5px; color:#7a7a7a;">Blog</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <span style="font-size:13px; font-weight:500;">Entreprises</span>
+        <a href="../index.html#ecampus" style="font-size:14.5px; color:#7a7a7a;">E-Campus Pro</a>
+        <a href="../index.html#pricing" style="font-size:14.5px; color:#7a7a7a;">Tarifs</a>
+        <a href="../index.html#b2b" style="font-size:14.5px; color:#7a7a7a;">Cohortes sur mesure</a>
+        <a href="../index.html#formateur" style="font-size:14.5px; color:#7a7a7a;">Devenir formateur</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <span style="font-size:13px; font-weight:500;">Contact</span>
+        <span style="font-size:14.5px; color:#7a7a7a;">Dakar, Sénégal</span>
+        <span style="font-size:14.5px; color:#7a7a7a;">Téléphone à confirmer</span>
+        <a href="mailto:academy@saalal.com" style="font-size:14.5px; color:#7a7a7a;">academy@saalal.com</a>
+      </div>
+    </div>
+    <div style="margin-top:56px; padding-top:22px; border-top:1px solid rgba(31,31,31,0.09); display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+      <span style="font-size:13px; color:#7a7a7a;">© 2026 Alal Academy. Tous droits réservés.</span>
+      <div style="display:flex; gap:22px; font-size:13px;">
+        <a href="../index.html#privacy" style="color:#7a7a7a;">Confidentialité</a>
+        <a href="../index.html#terms" style="color:#7a7a7a;">Conditions d'utilisation</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+/* ── Alal Academy cart ─────────────────────────────────────────────────────
+   One localStorage key holds the lines: [{id, plan}]. Any control with
+   data-add="<id>" (optionally data-plan="<n>") adds its item; the header
+   badge and the toast come free on every page that loads this. panier.html
+   renders from the same store. */
+window.AA_CATALOG = {"cours:fondamentaux-finance-islamique": {"kind": "cours", "title": "Fondamentaux de la Finance Islamique", "price": 69000, "cur": "FCFA", "img": "../assets/courses/fondamentaux-finance-islamique.jpg", "url": "../cours/fondamentaux-finance-islamique.html", "meta": "24 leçons · Fondamentaux", "cat": "Islamic Banking"}, "cours:digital-islamic-banking": {"kind": "cours", "title": "Digital Islamic Banking", "price": 69000, "cur": "FCFA", "img": "../assets/courses/digital-islamic-banking.jpg", "url": "../cours/digital-islamic-banking.html", "meta": "26 leçons · Expertise", "cat": "Islamic Banking"}, "cours:islamic-treasury-liquidite": {"kind": "cours", "title": "Islamic Treasury & Liquidité", "price": 69000, "cur": "FCFA", "img": "../assets/courses/islamic-treasury-liquidite.jpg", "url": "../cours/islamic-treasury-liquidite.html", "meta": "26 leçons · Expertise", "cat": "Islamic Banking"}, "cours:gestion-des-risques-compliance": {"kind": "cours", "title": "Gestion des Risques & Compliance", "price": 69000, "cur": "FCFA", "img": "../assets/courses/gestion-risques-compliance.jpg", "url": "../cours/gestion-des-risques-compliance.html", "meta": "26 leçons · Fondamentaux", "cat": "Islamic Banking"}, "cours:comptabilite-audit-islamique": {"kind": "cours", "title": "Comptabilité & Audit Islamique", "price": 69000, "cur": "FCFA", "img": "../assets/courses/comptabilite-audit-islamique.jpg", "url": "../cours/comptabilite-audit-islamique.html", "meta": "26 leçons · Fondamentaux", "cat": "Islamic Banking"}, "cours:islamic-corporate-banking": {"kind": "cours", "title": "Islamic Corporate Banking", "price": 69000, "cur": "FCFA", "img": "../assets/courses/islamic-corporate-banking.jpg", "url": "../cours/islamic-corporate-banking.html", "meta": "27 leçons · Expertise", "cat": "Islamic Banking"}, "cours:islamic-retail-banking": {"kind": "cours", "title": "Islamic Retail Banking", "price": 69000, "cur": "FCFA", "img": "../assets/courses/islamic-retail-banking.jpg", "url": "../cours/islamic-retail-banking.html", "meta": "18 leçons · Expertise", "cat": "Islamic Banking"}, "cours:contrats-islamiques-structuration": {"kind": "cours", "title": "Contrats Islamiques & Structuration", "price": 69000, "cur": "FCFA", "img": "../assets/courses/contrats-islamiques-structuration.jpg", "url": "../cours/contrats-islamiques-structuration.html", "meta": "Fondamentaux", "cat": "Islamic Banking"}, "parcours:certified-islamic-banker": {"kind": "parcours", "title": "Certified Islamic Banker (CIB)", "price": 400000, "cur": "FCFA", "img": "../assets/parcours/certified-islamic-banker.png", "url": "../parcours/certified-islamic-banker.html", "meta": "Intermédiaire · accès à vie · certificat inclus", "cat": "8 cours", "retail": 800000, "plans": [{"n": 1, "per": 400000, "total": 400000}, {"n": 2, "per": 210000, "total": 420000}, {"n": 3, "per": 146667, "total": 440000}], "reco": 3}};
+window.AA_ROOT = "../";
+window.AA_CART = (function () {
+  var KEY = 'aa.cart.v1';
+  var listeners = [];
+
+  function read() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw === null) return null;            /* never used the cart yet */
+      var v = JSON.parse(raw);
+      return Array.isArray(v) ? v : [];
+    } catch (e) { return []; }                  /* private mode, blocked storage */
+  }
+  function write(items) {
+    try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (e) {}
+    listeners.forEach(function (f) { f(items); });
+    badge(items);
+  }
+  function items() { return read() || []; }
+
+  function add(id, plan) {
+    if (!window.AA_CATALOG[id]) return false;
+    var list = items();
+    var found = null;
+    list.forEach(function (l) { if (l.id === id) found = l; });
+    if (found) {                                /* already there — only the plan can change */
+      if (plan) found.plan = plan;
+      write(list);
+      return 'again';
+    }
+    list.push(plan ? { id: id, plan: plan } : { id: id });
+    write(list);
+    return 'added';
+  }
+  function remove(id) {
+    write(items().filter(function (l) { return l.id !== id; }));
+  }
+  function setPlan(id, plan) {
+    var list = items();
+    list.forEach(function (l) { if (l.id === id) l.plan = plan; });
+    write(list);
+  }
+  function badge(list) {
+    list = list || items();
+    var el = document.getElementById('aaCartCount');
+    if (!el) return;
+    el.textContent = list.length;
+    el.classList.toggle('is-zero', list.length === 0);
+  }
+  function onChange(f) { listeners.push(f); }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    badge();
+
+    /* any add-to-cart control on the page */
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-add]');
+      if (!btn) return;
+      e.preventDefault();
+      var res = add(btn.getAttribute('data-add'), +btn.getAttribute('data-plan') || 0);
+      if (!res) return;
+      var item = window.AA_CATALOG[btn.getAttribute('data-add')];
+      toast(res === 'again' ? 'Déjà dans votre panier — ' + item.title
+                            : item.title + ' ajouté au panier');
+    });
+  });
+
+  /* the confirmation, built once and reused */
+  var box = null, timer = null;
+  function toast(msg) {
+    if (!box) {
+      box = document.createElement('div');
+      box.className = 'aa-toast';
+      box.innerHTML = '<span></span><a href="' + window.AA_ROOT + 'panier.html">Voir le panier</a>';
+      document.body.appendChild(box);
+    }
+    box.firstChild.textContent = msg;
+    requestAnimationFrame(function () { box.classList.add('is-on'); });
+    clearTimeout(timer);
+    timer = setTimeout(function () { box.classList.remove('is-on'); }, 4200);
+  }
+
+  return { items: items, add: add, remove: remove, setPlan: setPlan,
+           write: write, read: read, onChange: onChange, badge: badge, toast: toast };
+})();
+</script>
+
+<!-- CONNEXION -->
+<div class="aa-modal" id="aaLogin" role="dialog" aria-modal="true" aria-labelledby="aaLoginTitle" hidden>
+  <div class="aa-modal-overlay" data-aa-close></div>
+  <div class="aa-modal-dialog">
+      <button type="button" class="aa-modal-close" data-aa-close aria-label="Fermer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+
+    <aside class="aa-modal-aside">
+      <h3>Bienvenue.</h3>
+      <p>Pas encore membre ? <a href="#signup">Créer un compte</a></p>
+    </aside>
+
+    <div class="aa-modal-main">
+      <h2 id="aaLoginTitle">Connexion</h2>
+      <p class="aa-modal-lede">Retrouvez vos cours, vos certificats et votre panier.</p>
+      <form id="aaLoginForm" novalidate>
+        <div class="aa-field">
+          <label for="aaLoginEmail">E-mail ou identifiant</label>
+          <input id="aaLoginEmail" name="email" type="text" autocomplete="username" placeholder="vous@exemple.com">
+        </div>
+        <div class="aa-field">
+          <label for="aaLoginPass">Mot de passe</label>
+          <input id="aaLoginPass" name="password" type="password" autocomplete="current-password" placeholder="••••••••">
+        </div>
+        <label class="aa-modal-keep"><input type="checkbox" name="keep"> <span>Rester connecté</span></label>
+        <button type="submit" class="aa-modal-submit">Se connecter</button>
+      </form>
+      <p class="aa-modal-forgot"><a href="#reset">Mot de passe oublié ?</a></p>
+      <p class="aa-modal-or">Ou continuer avec</p>
+      <div class="aa-modal-social">
+        <a href="#oauth-google">Google</a>
+        <a href="#oauth-linkedin">LinkedIn</a>
+        <a href="#oauth-apple">Apple</a>
+      </div>
+      <p class="aa-modal-swap">Pas encore de compte ? <a href="#signup">Créer un compte</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- CRÉER UN COMPTE -->
+<div class="aa-modal" id="aaSignup" role="dialog" aria-modal="true" aria-labelledby="aaSignupTitle" hidden>
+  <div class="aa-modal-overlay" data-aa-close></div>
+  <div class="aa-modal-dialog">
+      <button type="button" class="aa-modal-close" data-aa-close aria-label="Fermer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+
+    <aside class="aa-modal-aside">
+      <h3>Commencez aujourd'hui.</h3>
+      <p>Déjà membre ? <a href="#login">Se connecter</a></p>
+    </aside>
+
+    <div class="aa-modal-main">
+      <h2 id="aaSignupTitle">Créer un compte</h2>
+      <p class="aa-modal-lede">Un seul compte pour les cours, les parcours et vos certificats.</p>
+      <form id="aaSignupForm" novalidate>
+        <div class="aa-modal-row">
+          <div class="aa-field">
+            <label for="aaSuFirst">Prénom</label>
+            <input id="aaSuFirst" name="first" type="text" autocomplete="given-name" placeholder="Prénom">
+          </div>
+          <div class="aa-field">
+            <label for="aaSuLast">Nom</label>
+            <input id="aaSuLast" name="last" type="text" autocomplete="family-name" placeholder="Nom">
+          </div>
+        </div>
+        <div class="aa-field">
+          <label for="aaSuEmail">E-mail</label>
+          <input id="aaSuEmail" name="email" type="email" autocomplete="email" placeholder="vous@exemple.com">
+        </div>
+        <div class="aa-field">
+          <label for="aaSuPass">Mot de passe</label>
+          <input id="aaSuPass" name="password" type="password" autocomplete="new-password" placeholder="••••••••">
+          <span class="hint">Au moins 8 caractères.</span>
+        </div>
+        <label class="aa-modal-keep"><input type="checkbox" name="cgu">
+          <span>J'accepte les <a href="#terms">conditions d'utilisation</a> et la
+          <a href="#privacy">politique de confidentialité</a>.</span></label>
+        <button type="submit" class="aa-modal-submit">Créer mon compte</button>
+      </form>
+      <p class="aa-modal-or">Ou continuer avec</p>
+      <div class="aa-modal-social">
+        <a href="#oauth-google">Google</a>
+        <a href="#oauth-linkedin">LinkedIn</a>
+        <a href="#oauth-apple">Apple</a>
+      </div>
+      <p class="aa-modal-swap">Vous avez déjà un compte ? <a href="#login">Se connecter</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Account dialogs: anything pointing at #login or #signup opens the matching
+   sheet over the page. The X, the overlay and Escape close it; the links
+   inside each aside swap straight to the other one. Focus moves in on open
+   and returns to whatever opened it. Design phase — the forms post nowhere. */
+(function () {
+  var sheets = { '#login': document.getElementById('aaLogin'),
+                 '#signup': document.getElementById('aaSignup') };
+  var opener = null, current = null;
+  function close() {
+    if (!current) return;
+    current.classList.remove('is-open'); current.hidden = true; current = null;
+    document.body.classList.remove('aa-modal-open');
+    if (opener && opener.focus) opener.focus();
+  }
+  function open(key, from) {
+    var m = sheets[key]; if (!m) return false;
+    if (current && current !== m) { current.classList.remove('is-open'); current.hidden = true; }
+    else if (!current) { opener = from || null; }
+    m.hidden = false; m.classList.add('is-open'); current = m;
+    document.body.classList.add('aa-modal-open');
+    m.scrollTop = 0;
+    var f = m.querySelector('input'); if (f) f.focus({ preventScroll: true });
+    return true;
+  }
+  document.addEventListener('click', function (e) {
+    var closer = e.target.closest('[data-aa-close]');
+    if (closer && closer.closest('.aa-modal')) { e.preventDefault(); close(); return; }
+    var a = e.target.closest('a[href="#login"], a[href="#signup"]');
+    if (!a) return;
+    if (open(a.getAttribute('href'), a)) e.preventDefault();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('#aaLoginForm, #aaSignupForm'),
+    function (f) { f.addEventListener('submit', function (e) { e.preventDefault(); }); });
+})();
+</script>
+
+</body>
+</html>

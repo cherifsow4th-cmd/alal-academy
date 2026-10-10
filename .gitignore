@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Python bytecode from the generators in build/
+__pycache__/
+*.pyc
+
+# Working files at the repo root: the index backups kept while the home page
+# was being written by hand, and the one-off Playwright scripts and their
+# screenshots used to check a layout. None of it is part of the site.
+/*.js
+/*.png
+/*.bak*
+/index.html.coverflow-removed
+/frames/
+/frames2/
+
+# prototypes kept out of the published site
+/index-depth-test.html
+/index-hero-full.html
+/hero-depth-proto.html
+_to_delete/
